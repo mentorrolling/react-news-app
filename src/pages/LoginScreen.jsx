@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import GoogleLogin from "react-google-login";
 
 import portada from "../assets/login.jpg";
 
 const LoginScreen = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
   const responseGoogle = (response) => {
     console.log(response);
+    if (response?.profileObj) {
+      let datos = response.profileObj;
+      localStorage.setItem("auth", JSON.stringify(datos));
+      navigate("/");
+    }
   };
 
   return (
