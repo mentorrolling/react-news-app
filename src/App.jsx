@@ -1,29 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { getNews } from "./helpers/fetchNews";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AboutScreen from "./pages/AboutScreen";
+import LoginScreen from "./pages/LoginScreen";
+import NewsErrorScreen from "./pages/NewsErrorScreen";
+import NewsScreen from "./pages/NewsScreen";
 
 const App = () => {
-  const [noticias, setNoticias] = useState({
-    loading: true,
-    datos: [],
-  });
-
-  useEffect(() => {
-    getNews().then((respuesta) => {
-      console.log(respuesta.articles);
-      setNoticias({
-        loading: false,
-        datos: respuesta.articles,
-      });
-    });
-  }, []);
-
-  //funciones
-
   return (
-    <div>
-      <h1>Noticias App</h1>
-      {noticias.loading ? <h3>Cargando...</h3> : <span>Datos recibidos</span>}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/" element={<NewsScreen />} />
+        <Route path="/about" element={<AboutScreen />} />
+        <Route path="*" element={<NewsErrorScreen />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
