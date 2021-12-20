@@ -1,14 +1,23 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
+//Hook dispatch para ejecutar acciones
+import { useDispatch } from "react-redux";
+//importar la función que definí en el reducer slice
+import { addUsuario, clearUsuario } from "../redux/slices/usuarioSlice";
+
 import GoogleLogin from "react-google-login";
 
 import portada from "../assets/login.jpg";
 
 const LoginScreen = () => {
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.clear();
+    dispatch(clearUsuario());
   }, []);
 
   const responseGoogle = (response) => {
@@ -16,6 +25,7 @@ const LoginScreen = () => {
     if (response?.profileObj) {
       let datos = response.profileObj;
       localStorage.setItem("auth", JSON.stringify(datos));
+      dispatch(addUsuario(datos));
       navigate("/");
     }
   };

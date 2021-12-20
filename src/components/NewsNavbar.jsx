@@ -1,7 +1,10 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const NewsNavbar = () => {
+  const usuario = useSelector((state) => state.usuario.datos);
+  // console.log(usuario);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
@@ -52,7 +55,8 @@ const NewsNavbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <i className="fa fa-user-circle" aria-hidden="true"></i> Pablo
+                  <i className="fa fa-user-circle" aria-hidden="true"></i>
+                  {usuario.name}
                 </button>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>

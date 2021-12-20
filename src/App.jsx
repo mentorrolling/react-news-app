@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUsuario } from "./redux/slices/usuarioSlice";
+
 import AboutScreen from "./pages/AboutScreen";
 import LoginScreen from "./pages/LoginScreen";
 import NewsErrorScreen from "./pages/NewsErrorScreen";
 import NewsScreen from "./pages/NewsScreen";
+import PerfilScreen from "./pages/PerfilScreen";
 import ProtectedRoute from "./routes/ProtectedRoute";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    let user = JSON.parse(localStorage.getItem("auth")) || {};
+    dispatch(addUsuario(user));
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -24,6 +35,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <AboutScreen />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/perfil"
+          element={
+            <ProtectedRoute>
+              <PerfilScreen />
             </ProtectedRoute>
           }
         />

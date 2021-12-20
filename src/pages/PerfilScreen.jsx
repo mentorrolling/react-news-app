@@ -1,17 +1,25 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
+import "../css/profile.css";
 
 const PerfilScreen = () => {
+  const usuario = useSelector((state) => state.usuario.datos);
   return (
     <div className="container">
       <div className="row">
         <div className="col-12 col-md-6 offset-md-3 ">
           <div className="our-team">
             <div className="picture">
-              <img className="img-fluid" src="" alt="" />
+              <img
+                className="img-fluid"
+                src={usuario.imageUrl}
+                alt={usuario.name}
+              />
             </div>
             <div className="team-content">
-              <h3 className="name">José</h3>
-              <h4 className="title">Gonzalez</h4>
+              <h3 className="name">{usuario.name}</h3>
+              <h4 className="title">{usuario.email}</h4>
             </div>
             <ul className="social">
               <li>
