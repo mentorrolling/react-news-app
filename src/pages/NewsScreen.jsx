@@ -1,32 +1,33 @@
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 import NewsLine from "../components/NewsLine";
-import { getNews } from "../helpers/fetchNews";
+import useFetch from "../hooks/useFetch";
 
 const NewsScreen = () => {
-  const isMounted = useRef(true);
+  const noticias = useFetch();
+  // const isMounted = useRef(true);
 
-  const [noticias, setNoticias] = useState({
-    loading: true,
-    datos: [],
-  });
+  // const [noticias, setNoticias] = useState({
+  //   loading: true,
+  //   datos: [],
+  // });
 
-  useEffect(() => {
-    return () => {
-      isMounted.current = false;
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     isMounted.current = false;
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    getNews().then((respuesta) => {
-      console.log(respuesta.articles);
-      if (isMounted.current) {
-        setNoticias({
-          loading: false,
-          datos: respuesta.articles,
-        });
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   getNews().then((respuesta) => {
+  //     console.log(respuesta.articles);
+  //     if (isMounted.current) {
+  //       setNoticias({
+  //         loading: false,
+  //         datos: respuesta.articles,
+  //       });
+  //     }
+  //   });
+  // }, []);
 
   //funciones
 
