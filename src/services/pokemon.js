@@ -9,6 +9,9 @@ export const pokemonApi=createApi({
         getPokemonByName: builder.query({
             query:(name)=>`pokemon/${name}`
         }),
+        // getPokemon:builder.query({
+        //     query:()=>`pokemon`
+        // })
 //https://sitenso.co/api/usuarios
 //query:()=>`usuarios`
     })

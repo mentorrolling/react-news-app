@@ -1,17 +1,21 @@
 import React from "react";
+import { useState } from "react";
 
 import { useGetPokemonByNameQuery } from "../services/pokemon";
 
 const AboutScreen = () => {
+
+
+
  //estado que maneje el input
  //estado que almacene el nombre del pokemon useState=pokemon
 
 
   const { data, error, isFetching } = useGetPokemonByNameQuery("charmander");
 
-  // console.log(data);
-  // console.log(error);
-  // console.log(isFetching);
+  console.log(data);
+  console.log(error);
+  console.log(isFetching);
 
   //funcion que controle cuando cambie el input
   //funcion que cuando le de enter almacene lo del input en el estado pokemon 
