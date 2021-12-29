@@ -3,12 +3,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUsuario } from "./redux/slices/usuarioSlice";
 
-import AboutScreen from "./pages/AboutScreen";
+// import AboutScreen from "./pages/AboutScreen";
 import LoginScreen from "./pages/LoginScreen";
 import NewsErrorScreen from "./pages/NewsErrorScreen";
 import NewsScreen from "./pages/NewsScreen";
 import PerfilScreen from "./pages/PerfilScreen";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import NewsCategoryScreen from "./pages/NewsCategoryScreen";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const App = () => {
           path="/about"
           element={
             <ProtectedRoute>
-              <AboutScreen />
+              <NewsCategoryScreen />
             </ProtectedRoute>
           }
         />

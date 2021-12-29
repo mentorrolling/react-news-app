@@ -48,3 +48,8 @@ ul.timeline > li:before {
   font-weight: bold;
   color: darkslateblue;
 }
+
+.img-timeline{
+  width: 100%;
+  border-radius: 10px;
+}

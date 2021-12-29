@@ -1,21 +1,33 @@
-import React from "react";
-import { useState } from "react";
+import React,{useState } from "react";
 
 import { useGetPokemonByNameQuery } from "../services/pokemon";
 
 const AboutScreen = () => {
 
-
+const [inputValue, setInputValue] = useState('')
+const [pokemon, setPokemon] = useState('pikachu')
 
  //estado que maneje el input
  //estado que almacene el nombre del pokemon useState=pokemon
+  const { data, error, isFetching } = useGetPokemonByNameQuery(pokemon);
 
+  // console.log(data);
+  // console.log(error);
+  // console.log(isFetching);
 
-  const { data, error, isFetching } = useGetPokemonByNameQuery("charmander");
+  const handleEnter=(e)=>{
 
-  console.log(data);
-  console.log(error);
-  console.log(isFetching);
+    if(e.keyCode===13 && inputValue.length>3){
+      
+      setPokemon(inputValue)
+      setInputValue('')
+  }
+  }
+
+const handleChange=(e)=>{
+// console.log(e.target);
+  setInputValue(e.target.value)
+}
 
   //funcion que controle cuando cambie el input
   //funcion que cuando le de enter almacene lo del input en el estado pokemon 
@@ -29,7 +41,14 @@ const AboutScreen = () => {
       </div>
       <div className="row">
         <div className="col-12 col-md-6 offset-md-3 text-center">
-        <input type="text" className="form-control" placeholder='Nombre de pokemon...' />
+        <input 
+        type="text" 
+        className="form-control" 
+        placeholder='Nombre de pokemon...'
+        value={inputValue}
+        onChange={handleChange}
+        onKeyDown={handleEnter}
+        />
 
           {error ? (
             <h4>No se consiguió la info</h4>
